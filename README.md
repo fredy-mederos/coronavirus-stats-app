@@ -3,3 +3,7 @@ The purpose of this app is to display the latest statistics and information rela
 
 ## API
 The main datasouce is the https://corona.lmao.ninja/ api
+
+## Web version
+to run the web version use this command line:
+- `flutter run -d chrome --web-hostname localhost --web-port 5000 -t lib/main.dart`

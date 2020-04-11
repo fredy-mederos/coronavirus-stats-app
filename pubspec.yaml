@@ -14,18 +14,24 @@ description: The purpose of this app is to display the latest statistics and inf
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  material_design_icons_flutter: ^3.4.5045+1
   cupertino_icons: ^0.1.3
+  rxdart: 0.22.2
+  get_it: ^4.0.1
+  google_fonts: ^0.3.10
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.7.4
+  mockito: ^4.1.1
   flutter_test:
     sdk: flutter
 
