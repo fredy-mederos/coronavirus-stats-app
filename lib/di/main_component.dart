@@ -1,5 +1,6 @@
 import 'package:coronavirus_stats_app/ui/home/home_viewmodel.dart';
 import 'package:coronavirus_stats_app/utils/logger.dart';
+import 'package:coronavirus_stats_app/utils/network_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
@@ -7,6 +8,7 @@ class MainComponent {
   ///Singleton instance
   static MainComponent instance;
   final getIt = GetIt.instance;
+  String _apiUrl;
 
   ///Is the app in debug mode?
   bool isInDebugMode() {
@@ -17,11 +19,12 @@ class MainComponent {
 
   T getDependency<T>() => getIt.get();
 
-  static init({@required Mode mode}) {
-    instance ??= MainComponent._start(mode: mode);
+  static init({@required Mode mode, @required String apiUrl}) {
+    instance ??= MainComponent._start(mode: mode, apiUrl: apiUrl);
   }
 
-  MainComponent._start({@required Mode mode}) {
+  MainComponent._start({@required Mode mode, @required String apiUrl}) {
+    this._apiUrl = apiUrl;
     _registerDependencies(mode: mode);
   }
 
@@ -40,6 +43,7 @@ class MainComponent {
     } else {
       getIt.registerFactory<Logger>(() => LoggerEmptyImpl());
     }
+    getIt.registerFactory(() => NetworkHandler(_apiUrl, getDependency()));
   }
 }
 
