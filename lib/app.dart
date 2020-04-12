@@ -9,7 +9,6 @@ import 'package:google_fonts/google_fonts.dart';
 class CoronavirusStatsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     final localizationDelegate = CustomLocalizationsDelegate();
     return MaterialApp(
       title: R.string.appName,
@@ -33,17 +32,23 @@ class CoronavirusStatsApp extends StatelessWidget {
 
 ThemeData get _lightTheme => ThemeData(
       appBarTheme: AppBarTheme(
-        iconTheme: IconThemeData(color: Colors.black),
+        color: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.grey.shade800),
         elevation: 0,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
       ),
       brightness: Brightness.light,
       primarySwatch: Colors.pink,
+      primaryTextTheme: TextTheme(
+        title: TextStyle(color: Colors.grey.shade800),
+        subtitle: TextStyle(color: Colors.grey.shade800),
+      ),
       fontFamily: GoogleFonts.notoSans().fontFamily,
     );
 
 ThemeData get _darkTheme => ThemeData(
       appBarTheme: AppBarTheme(
+        color: Colors.transparent,
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
         brightness: Brightness.dark,

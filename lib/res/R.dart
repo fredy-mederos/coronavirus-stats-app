@@ -1,3 +1,4 @@
+import 'package:coronavirus_stats_app/res/icons.dart';
 import 'package:flutter/widgets.dart';
 
 import 'text/custom_localizations_delegate.dart';
@@ -8,6 +9,7 @@ const int _SMALL_HEIGHT_SIZE = 400;
 
 class R {
   static StringsBase get string => CustomLocalizationsDelegate.stringsBase;
+  static CustomIcons icons = CustomIcons();
 
   static bool deviceWidthIsBig(BuildContext context) {
     final shortestSide = MediaQuery.of(context).size.width;

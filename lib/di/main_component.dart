@@ -1,3 +1,5 @@
+import 'package:coronavirus_stats_app/domain/usecases/get_global_stats_usecase.dart';
+import 'package:coronavirus_stats_app/impl/stub/get_global_stats_usecase_stub_impl.dart';
 import 'package:coronavirus_stats_app/ui/home/home_viewmodel.dart';
 import 'package:coronavirus_stats_app/utils/logger.dart';
 import 'package:coronavirus_stats_app/utils/network_handler.dart';
@@ -31,10 +33,16 @@ class MainComponent {
   void _registerDependencies({Mode mode}) {
     _registerViewModels();
     _registerCommon();
+
+    if (mode == Mode.STUB) _registerStubImpl();
+  }
+
+  void _registerStubImpl() {
+    getIt.registerFactory<GetGlobalStatsUseCase>(() => GetGlobalStatsUseCaseStubImpl());
   }
 
   void _registerViewModels() {
-    getIt.registerFactory<HomeViewModel>(() => HomeViewModel());
+    getIt.registerFactory<HomeViewModel>(() => HomeViewModel(getDependency()));
   }
 
   void _registerCommon() {
