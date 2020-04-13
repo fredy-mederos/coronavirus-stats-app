@@ -101,7 +101,6 @@ class StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0.1,
       child: ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 8),
         title: Row(
