@@ -1,5 +1,7 @@
+import 'package:coronavirus_stats_app/domain/models/country_model.dart';
 import 'package:coronavirus_stats_app/domain/models/stats_model.dart';
 import 'package:coronavirus_stats_app/ui/cards/global_stats_card.dart';
+import 'package:coronavirus_stats_app/ui/general/coutries_data_table.dart';
 import 'package:coronavirus_stats_app/ui/home/home_viewmodel.dart';
 import 'package:coronavirus_stats_app/viewmodel/viewmodel_provider.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,14 @@ class _GeneralPageState extends State<GeneralPage> {
   Widget getBody() => Stack(
         children: [
           loadingIndicator(),
-          globalStatsCard(),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                globalStatsCard(),
+                getCountriesList(),
+              ],
+            ),
+          ),
         ],
       );
 
@@ -44,6 +53,16 @@ class _GeneralPageState extends State<GeneralPage> {
         builder: (_, snapshot) {
           final data = snapshot.data;
           return (data != null) ? GlobalStatsCard(statsModel: data) : Container();
+        },
+      );
+
+  Widget getCountriesList() => StreamBuilder<List<CountryModel>>(
+        stream: viewModel.countriesStatsStream,
+        initialData: <CountryModel>[],
+        builder: (_, snapshot) {
+          final data = snapshot.data;
+          if (data.isEmpty) return Container();
+          return CountriesDataTable(countries: data);
         },
       );
 }

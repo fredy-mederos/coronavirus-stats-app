@@ -3,7 +3,7 @@ class LatLong {
   final double long;
 
   LatLong({
-    this.lat,
-    this.long,
+    this.lat = -1,
+    this.long = -1,
   });
 }

@@ -1,5 +1,7 @@
 import 'package:coronavirus_stats_app/domain/models/stats_model.dart';
 import 'package:coronavirus_stats_app/res/R.dart';
+import 'package:coronavirus_stats_app/ui/common/badge.dart';
+import 'package:coronavirus_stats_app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
 class GlobalStatsCard extends StatelessWidget {
@@ -12,35 +14,35 @@ class GlobalStatsCard extends StatelessWidget {
     final confirmedCard = StatCard(
       title: R.string.confirmed,
       subtitle: statsModel.cases.toString(),
-      trailingTitle: "+${statsModel.todayCases}",
-      subtitleColor: Theme.of(context).primaryTextTheme.title.color,
+      trailingTitle: statsModel.todayCases.toStringWithSign(),
+      subtitleColor: Colors.yellow.shade900,
     );
 
     final activeCard = StatCard(
       title: R.string.active,
       subtitle: statsModel.active.toString(),
-      trailingTitle: "+${statsModel.todayActive}",
-      subtitleColor: Colors.deepOrangeAccent,
+      trailingTitle: statsModel.todayActive.toStringWithSign(),
+      subtitleColor: Colors.blue,
     );
 
     final recoveredCard = StatCard(
       title: R.string.recovered,
       subtitle: statsModel.recovered.toString(),
-      trailingTitle: "+${statsModel.todayRecovered}",
+      trailingTitle: statsModel.todayRecovered.toStringWithSign(),
       subtitleColor: Colors.green,
     );
 
     final critical = StatCard(
       title: R.string.critical,
       subtitle: statsModel.critical.toString(),
-      trailingTitle: "+${statsModel.todayCritical}",
+      trailingTitle: statsModel.todayCritical.toStringWithSign(),
       subtitleColor: Colors.deepPurple,
     );
 
     final deathCard = StatCard(
       title: R.string.deceased,
       subtitle: statsModel.deaths.toString(),
-      trailingTitle: "+${statsModel.todayDeaths}",
+      trailingTitle: statsModel.todayDeaths.toStringWithSign(),
       subtitleColor: Colors.red,
     );
 
@@ -49,10 +51,10 @@ class GlobalStatsCard extends StatelessWidget {
     if (widthSize <= 600) {
       children = [
         TableRow(
-          children: [confirmedCard, activeCard],
+          children: [confirmedCard, deathCard],
         ),
         TableRow(
-          children: [recoveredCard, deathCard],
+          children: [recoveredCard, activeCard],
         ),
         TableRow(
           children: [critical, Container()],
@@ -61,16 +63,16 @@ class GlobalStatsCard extends StatelessWidget {
     } else if (widthSize <= 900) {
       children = [
         TableRow(
-          children: [confirmedCard, activeCard, recoveredCard],
+          children: [confirmedCard, deathCard, recoveredCard],
         ),
         TableRow(
-          children: [deathCard, critical, Container()],
+          children: [activeCard, critical, Container()],
         )
       ];
     } else {
       children = [
         TableRow(
-          children: [confirmedCard, activeCard, recoveredCard, deathCard, critical],
+          children: [confirmedCard, deathCard, recoveredCard, activeCard, critical],
         ),
       ];
     }
