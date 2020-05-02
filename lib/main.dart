@@ -5,6 +5,6 @@ import 'package:flutter/material.dart';
 const String _API_BASE_URL = "https://corona.lmao.ninja";
 
 void main() {
-  MainComponent.init(mode: Mode.PROD, apiUrl: _API_BASE_URL);
+  MainComponent.init(mode: Mode.PROD, apiUrl: _API_BASE_URL, client: Client.MOBILE);
   runApp(CoronavirusStatsApp());
 }

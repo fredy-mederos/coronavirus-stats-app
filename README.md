@@ -8,5 +8,8 @@ The main datasouce is the https://corona.lmao.ninja/ api
 to run the web version use this command line:
 - `flutter run -d chrome --web-hostname localhost --web-port 5000 -t lib/main.dart`
 
+## Inspiration features
+- https://github.com/Amulya-Kumar/coronavirus-tracker
+
 ## Inspiration designs 
 - https://www.uplabs.com/posts/covid-19-tracking-app-design

@@ -15,6 +15,6 @@ class CountryModel {
     this.stats,
     this.position,
     this.flagUrl,
-    this.isPinned,
+    this.isPinned = false,
   });
 }

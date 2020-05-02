@@ -32,13 +32,13 @@ class CoronavirusStatsApp extends StatelessWidget {
 
 ThemeData get _lightTheme => ThemeData(
       appBarTheme: AppBarTheme(
-        color: Colors.transparent,
+        color: Colors.grey[50],
         iconTheme: IconThemeData(color: Colors.grey.shade800),
-        elevation: 0,
+        elevation: 5,
         brightness: Brightness.light,
       ),
       brightness: Brightness.light,
-      primarySwatch: Colors.pink,
+      primarySwatch: Colors.red,
       primaryTextTheme: TextTheme(
         title: TextStyle(color: Colors.grey.shade800),
         subtitle: TextStyle(color: Colors.grey.shade800),
@@ -48,9 +48,9 @@ ThemeData get _lightTheme => ThemeData(
 
 ThemeData get _darkTheme => ThemeData(
       appBarTheme: AppBarTheme(
-        color: Colors.transparent,
+        color: Colors.grey[850],
         iconTheme: IconThemeData(color: Colors.white),
-        elevation: 0,
+        elevation: 5,
         brightness: Brightness.dark,
       ),
       brightness: Brightness.dark,

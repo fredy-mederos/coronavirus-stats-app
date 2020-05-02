@@ -5,3 +5,10 @@ extension SafeSink<T> on StreamController<T> {
     if (!this.isClosed) this.sink.add(value);
   }
 }
+
+extension IntExtensions on int {
+  String toStringWithSign() {
+    if (this > 0) return "+$this";
+    return "$this";
+  }
+}
