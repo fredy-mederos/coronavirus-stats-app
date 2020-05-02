@@ -6,8 +6,17 @@ import 'package:flutter/material.dart';
 
 class CountriesDataTable extends StatelessWidget {
   final List<CountryModel> countries;
+  final DataColumnSortCallback onSort;
+  final int sortColumnIndex;
+  final bool sortAscending;
 
-  const CountriesDataTable({Key key, @required this.countries}) : super(key: key);
+  const CountriesDataTable({
+    Key key,
+    @required this.countries,
+    @required this.onSort,
+    @required this.sortColumnIndex,
+    @required this.sortAscending,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +24,19 @@ class CountriesDataTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: DataTable(
         columnSpacing: 8,
-        sortColumnIndex: 1,
-        sortAscending: true,
+        sortColumnIndex: sortColumnIndex,
+        sortAscending: sortAscending,
         horizontalMargin: 16,
         columns: [
           DataColumn(label: Text("Country")),
-          DataColumn(label: Text("Total\nCases"), numeric: true, onSort: (_, a) {}),
-          DataColumn(label: Text("New\nCases"), numeric: true, onSort: (_, a) {}),
-          DataColumn(label: Text("Total\nDeaths"), numeric: true, onSort: (_, a) {}),
-          DataColumn(label: Text("New\nDeaths"), numeric: true, onSort: (_, a) {}),
-          DataColumn(label: Text("Total\nRecovered"), numeric: true, onSort: (_, a) {}),
-          DataColumn(label: Text("New\nRecovered"), numeric: true, onSort: (_, a) {}),
-          DataColumn(label: Text("Active\nCases"), numeric: true, onSort: (_, a) {}),
-          DataColumn(label: Text("Critical"), numeric: true, onSort: (_, a) {}),
+          DataColumn(label: Text("Total\nCases"), numeric: true, onSort: onSort),
+          DataColumn(label: Text("New\nCases"), numeric: true, onSort: onSort),
+          DataColumn(label: Text("Total\nDeaths"), numeric: true, onSort: onSort),
+          DataColumn(label: Text("New\nDeaths"), numeric: true, onSort: onSort),
+          DataColumn(label: Text("Total\nRecovered"), numeric: true, onSort: onSort),
+          DataColumn(label: Text("New\nRecovered"), numeric: true, onSort: onSort),
+          DataColumn(label: Text("Active\nCases"), numeric: true, onSort: onSort),
+          DataColumn(label: Text("Critical"), numeric: true, onSort: onSort),
           DataColumn(label: Text("Country"), numeric: true),
         ],
         rows: countries

@@ -1,5 +1,7 @@
 import 'package:coronavirus_stats_app/domain/usecases/get_countries_usecase.dart';
 import 'package:coronavirus_stats_app/domain/usecases/get_global_stats_usecase.dart';
+import 'package:coronavirus_stats_app/domain/usecases/sort_countries_usecase.dart';
+import 'package:coronavirus_stats_app/impl/sort_countries_usecase_impl.dart';
 import 'package:coronavirus_stats_app/impl/stub/get_countries_usecase_stub_impl.dart';
 import 'package:coronavirus_stats_app/impl/stub/get_global_stats_usecase_stub_impl.dart';
 import 'package:coronavirus_stats_app/ui/home/home_viewmodel.dart';
@@ -50,7 +52,11 @@ class MainComponent {
   }
 
   void _registerViewModels() {
-    getIt.registerFactory<HomeViewModel>(() => HomeViewModel(getDependency(), getDependency()));
+    getIt.registerFactory<HomeViewModel>(() => HomeViewModel(
+          getDependency(),
+          getDependency(),
+          getDependency(),
+        ));
   }
 
   void _registerCommon() {
@@ -60,6 +66,7 @@ class MainComponent {
       getIt.registerFactory<Logger>(() => LoggerEmptyImpl());
     }
     getIt.registerFactory(() => NetworkHandler(_apiUrl, getDependency()));
+    getIt.registerFactory<SortCountriesUseCase>(() => SortCountriesUseCaseImpl());
   }
 }
 

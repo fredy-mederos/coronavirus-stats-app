@@ -1,4 +1,3 @@
-import 'package:coronavirus_stats_app/domain/models/country_model.dart';
 import 'package:coronavirus_stats_app/domain/models/stats_model.dart';
 import 'package:coronavirus_stats_app/ui/cards/global_stats_card.dart';
 import 'package:coronavirus_stats_app/ui/general/coutries_data_table.dart';
@@ -56,13 +55,17 @@ class _GeneralPageState extends State<GeneralPage> {
         },
       );
 
-  Widget getCountriesList() => StreamBuilder<List<CountryModel>>(
+  Widget getCountriesList() => StreamBuilder<CountryDataList>(
         stream: viewModel.countriesStatsStream,
-        initialData: <CountryModel>[],
         builder: (_, snapshot) {
           final data = snapshot.data;
-          if (data.isEmpty) return Container();
-          return CountriesDataTable(countries: data);
+          if (data == null || data.list.isEmpty) return Container();
+          return CountriesDataTable(
+            countries: data.list,
+            onSort: viewModel.sortItems,
+            sortColumnIndex: data.sortColumnIndex,
+            sortAscending: data.sortAscending,
+          );
         },
       );
 }
