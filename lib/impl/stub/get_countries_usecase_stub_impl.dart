@@ -5,7 +5,7 @@ import 'package:coronavirus_stats_app/domain/usecases/get_countries_usecase.dart
 
 class GetCountriesUseCaseStubImpl implements GetCountriesUseCase {
   Future<List<CountryModel>> getCountries({bool allowCachedData = true}) {
-    return Future.delayed(Duration(seconds: 2), () {
+    return Future.delayed(Duration(seconds: 10), () {
       return [
         CountryModel(
           name: "USA",

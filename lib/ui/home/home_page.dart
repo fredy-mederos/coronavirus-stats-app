@@ -1,12 +1,13 @@
+import 'package:common/gmap_widget.dart';
 import 'package:coronavirus_stats_app/domain/models/stats_model.dart';
 import 'package:coronavirus_stats_app/res/R.dart';
 import 'package:coronavirus_stats_app/ui/general/general_page.dart';
 import 'package:coronavirus_stats_app/ui/general_charts/general_charts_page.dart';
 import 'package:coronavirus_stats_app/ui/home/home_viewmodel.dart';
-import 'package:coronavirus_stats_app/ui/settings/settings_page.dart';
 import 'package:coronavirus_stats_app/viewmodel/state_with_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -43,9 +44,9 @@ class _HomePageState extends StateWithViewModel<HomePage, HomeViewModel> {
             title: Container(),
           ),
           BottomNavigationBarItem(
-            icon: Icon(MdiIcons.cogOutline),
+            icon: Icon(MdiIcons.map),
             title: Container(),
-          )
+          ),
         ],
       ),
       body: getBody(),
@@ -79,7 +80,7 @@ class _HomePageState extends StateWithViewModel<HomePage, HomeViewModel> {
       case 1:
         return GeneralChartsPage();
       case 2:
-        return SettingsPage();
+        return GmapWidget(viewModel.countriesStatsStream);
     }
     return Container();
   }
